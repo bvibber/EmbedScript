@@ -1,0 +1,49 @@
+== Basic protocol ==
+
+* Host opens <iframe> with the sandbox page's URL
+* Sandbox initializes self, jQuery
+* Host sees 'load' event on iframe
+* Host posts message to sandbox: {action: 'load', code: '...js source...', args: ['...string...', ...]}
+* Sandbox makes the 'args' parameter available as 'sandbox.args' in script's local context
+* Sandbox executes the JavaScript code in its local context
+
+
+== postMessage details ==
+
+Send JSON-serialized strings of object maps, prefixed with 'mediawiki.embedscript:'
+
+Host verifies the sandbox's messages by the origin window and the prefix.
+Sandbox verifies the host's messages by the origin window and the prefix.
+
+
+== Security ==
+
+Security is enforced by the browser's same-origin controls. As such, protection against
+malicious code can only be ensured by using a sandbox page hosted on a separate domain.
+
+Remember that the code will have full capability to do anything the browser allows in
+an iframe, including loading foreign scripts or sending all data passed into it to an
+evil web site!
+
+HTTPS is recommended for loading the sandbox page; the real sandbox page will never
+send data passed to it on to any server, but a malicious MitM one might.
+
+
+== Wiki-side usage ==
+
+<embedscript arg1="arg1" ...>...JS code...</embedscript>
+
+<embedscript src="ScriptPageName" />
+
+Optional parameters:
+* width - defaults to 640
+* height - defaults to 480
+* src - to load script source from a wiki page instead of contents
+* fallback - fallback content if JS unavailable
+
+Width and height default to 640x480
+
+
+== File access ==
+
+tbd

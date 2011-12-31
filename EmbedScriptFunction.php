@@ -15,6 +15,19 @@ class EmbedScriptFunction {
 		}
 		*/
 
+		if ( isset( $args['src'] ) ) {
+			$content = '';
+			$title = Title::newFromText( $args['src'] );
+			unset( $args['src'] );
+			if( $title ) {
+				$rev = Revision::newFromTitle( $title );
+				if( $rev ) {
+					$parser->getOutput()->addTemplate( $title, $title->getArticleId(), $rev->getId() );
+					$content = $rev->getText();
+				}
+			}
+		}
+
 		$data = array(
 			'code' => $content,
 			'args' => $args

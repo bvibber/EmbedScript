@@ -21,7 +21,7 @@ $('.mw-embedscript').each(function() {
 		iframe = $iframe[0];
 	
 	$iframe
-		.attr('src', 'http://pancake.local/sandbox/')
+		.attr('src', 'http://embed-sandbox.wmflabs.org/')
 		.attr('width', data.width || 640)
 		.attr('height', data.height || 480)
 		.one('load', function() {

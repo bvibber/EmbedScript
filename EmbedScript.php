@@ -45,10 +45,10 @@ $wgResourceModules['ext.embedscript.host'] = array(
 );
 
 
-$egEmbedScriptSandbox = 'http://toolserver.org/~brion/EmbedScript/sandbox/';
+$egEmbedScriptSandbox = 'http://embed-sandbox.wmflabs.org/';
 
 
 function setupEmbedScript( $parser ) {
-	$parser->setHook( 'embedscript', array( EmbedScriptFunction, 'embedScriptTag') );
+	$parser->setHook( 'embedscript', array( 'EmbedScriptFunction', 'embedScriptTag') );
 	return true;
 }

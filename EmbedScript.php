@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2011 Brion Vibber <brion@pobox.com>
+ * Copyright (C) 2011-2014 Brion Vibber <brion@pobox.com>
  * http://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
@@ -45,7 +45,7 @@ $wgResourceModules['ext.embedscript.host'] = array(
 );
 
 
-$egEmbedScriptSandbox = 'http://embed-sandbox.wmflabs.org/';
+$egEmbedScriptSandbox = 'https://embed-sandbox.wmflabs.org/';
 
 
 function setupEmbedScript( $parser ) {

@@ -17,7 +17,7 @@ class EmbedScriptFunction {
 
 		if ( isset( $args['src'] ) ) {
 			$content = '';
-			$title = Title::newFromText( $args['src'] );
+			$title = Title::newFromText( $args['src'], NS_JSAPPLET );
 			unset( $args['src'] );
 			if( $title ) {
 				$rev = Revision::newFromTitle( $title );

@@ -32,8 +32,9 @@ $wgExtensionMessagesFiles['EmbedScript'] = dirname(__FILE__) . '/EmbedScript.i18
 
 $wgHooks['ParserFirstCallInit'][] = 'setupEmbedScript';
 
-$wgAutoloadClasses['EmbedScriptFunction'] =
-	dirname(__FILE__) . '/EmbedScriptFunction.php';
+$wgAutoloadClasses['EmbedScriptFunction'] = __DIR__ . '/EmbedScriptFunction.php';
+$wgAutoloadClasses['JSAppletContent'] = __DIR__ . '/JSAppletContent.php';
+$wgAutoloadClasses['JSAppletHandler'] = __DIR__ . '/JSAppletHandler.php';
 
 $wgResourceModules['ext.embedscript.host'] = array(
 	'localBasePath' => dirname( __FILE__ ) . '/modules',
@@ -44,9 +45,17 @@ $wgResourceModules['ext.embedscript.host'] = array(
 	)
 );
 
+// Setup content model...
+define( 'CONTENT_MODEL_JSAPPLET', 'embedscript-jsapplet' );
+define( 'CONTENT_FORMAT_JSAPPLET', 'text/x-jsapplet' );
+$wgContentHandlers[CONTENT_MODEL_JSAPPLET] = 'JSAppletHandler';
 
-$egEmbedScriptSandbox = 'https://embed-sandbox.wmflabs.org/';
-
+// https://www.mediawiki.org/wiki/Extension_default_namespaces#EmbedScript
+define( 'NS_JSAPPLET', 280 );
+define( 'NS_JSAPPLET_TALK', 281 );
+$wgExtraNamespaces[ NS_JSAPPLET ] = 'JSApplet';
+$wgExtraNamespaces[ NS_JSAPPLET_TALK ] = 'JSApplet_talk';
+$wgNamespaceContentModels[ NS_JSAPPLET ] = CONTENT_MODEL_JSAPPLET; 
 
 function setupEmbedScript( $parser ) {
 	$parser->setHook( 'embedscript', array( 'EmbedScriptFunction', 'embedScriptTag') );

@@ -33,8 +33,10 @@ $wgExtensionMessagesFiles['EmbedScript'] = dirname(__FILE__) . '/EmbedScript.i18
 $wgHooks['ParserFirstCallInit'][] = 'setupEmbedScript';
 
 $wgAutoloadClasses['EmbedScriptFunction'] = __DIR__ . '/EmbedScriptFunction.php';
+$wgAutoloadClasses['JSApplet'] = __DIR__ . '/JSApplet.php';
 $wgAutoloadClasses['JSAppletContent'] = __DIR__ . '/JSAppletContent.php';
 $wgAutoloadClasses['JSAppletHandler'] = __DIR__ . '/JSAppletHandler.php';
+$wgAutoloadClasses['JSAppletEditAction'] = __DIR__ . '/JSAppletEditAction.php';
 
 $wgResourceModules['ext.embedscript.host'] = array(
 	'localBasePath' => dirname( __FILE__ ) . '/modules',
@@ -47,7 +49,6 @@ $wgResourceModules['ext.embedscript.host'] = array(
 
 // Setup content model...
 define( 'CONTENT_MODEL_JSAPPLET', 'embedscript-jsapplet' );
-define( 'CONTENT_FORMAT_JSAPPLET', 'text/x-jsapplet' );
 $wgContentHandlers[CONTENT_MODEL_JSAPPLET] = 'JSAppletHandler';
 
 // https://www.mediawiki.org/wiki/Extension_default_namespaces#EmbedScript
